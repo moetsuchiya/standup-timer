@@ -9,7 +9,7 @@ class DurationChoices(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 class StudyRecord(models.Model):
     title = models.CharField(max_length=100)
     descrition = models.TextField(null=True, blank=True)

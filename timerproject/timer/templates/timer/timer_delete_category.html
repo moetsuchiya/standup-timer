@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}カテゴリ削除{% endblock title %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    <button type="submit">このカテゴリを削除する</button>
+</form>
+<a href="{% url 'list-category' %}" class="btn btn-primary">カテゴリ一覧へ</a>
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}タイマー{% endblock title %}
+
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'timer/css/clock.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+<div class="timer-container">
+  <h1>Standup!Timer</h1>
+  {% csrf_token %}
+  <div id="message-container" style="display: none;"></div>
+  <div id="clock-url" data-url="{% url 'clock' %}"></div>
+  <!-- select-containerでラップして中央配置 -->
+  <div class="select-container">
+      <select class="form-control" name="title">
+          <option value="">タイトルを選択</option>
+          {% for title in titles %}
+              <option value="{{ title.id }}">カテゴリ：{{ title.category }} タイトル：{{ title.title }}</option>
+          {% endfor %}
+      </select>
+  </div>
+
+  <div id="timer-container">
+    <div class="time-controls">
+        <button id="increase-minute">▲</button>
+        <button id="increase-second">▲</button>
+    </div>
+
+    <div id="timer">
+        <span id="minutes">00</span>:<span id="seconds">00</span>
+    </div>
+
+    <div class="time-controls">
+        <button id="decrease-minute">▼</button>
+        <button id="decrease-second">▼</button>
+    </div>
+</div>
+  <div id="elapsed-time">00:00</div>
+  <div id="message" style="display: none;">お疲れ様でした🎉</div>
+  <div class="control-buttons">
+      <button onclick="startTimer()">start</button>
+      <button onclick="resetTimer()">reset</button>
+      <button id="record-button" onclick="recordTime()" style="display: none;">record</button>
+  </div>
+</div>
+<script src="{% static 'timer/js/timer.js' %}"></script>
+{% endblock content %}

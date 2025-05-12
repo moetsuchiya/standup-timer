@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}記録詳細{% endblock title %}
+
+{% block content %}
+<div class="card text-center">
+    <div class="card-header">
+      {{ object.category }}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ object.title }}</h5>
+      <p class="card-text">{{ object.description }}</p>
+      {% if object.thumbnail %}
+      <img src="{{ object.thumbnail.url }}" class="img-thumbnail" />
+      {% endif %}
+      <a href="{% url 'update-timer' object.pk %}" class="btn btn-primary">編集する</a>
+      <a href="{% url 'delete-timer' object.pk %}" class="btn btn-primary">削除する</a>
+      <a href="{% url 'list-timer' %}" class="btn btn-primary">一覧へ</a>
+    </div>
+    <div class="card-footer text-body-secondary">
+      2 days ago
+    </div>
+</div>
+{% endblock content %}

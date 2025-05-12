@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background: #fff;
+    color: #333;
+}
+
+.header {
+    background: white;
+    padding: 15px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-links, .nav-auth {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a, .nav-auth a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover, .nav-auth a:hover {
+    color: #605BFF;
+    text-decoration: underline;
+}
+
+/* .contentのスタイルを調整してタイマーの位置を調整 */
+.content {
+    padding: 0; /* 余白を削除して調整 */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* タイトルのh1にマージンを追加し、位置を調整 */
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;  /* h1の位置を調整 */
+}
+
+/* timer-containerの位置を調整 */
+.timer-container {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;  /* 上部に配置 */
+    height: 100vh;  /* ビューポート全体にフィット */
+    width: 100%;   /* 幅を100%に設定 */
+    box-sizing: border-box; /* パディングが幅や高さに影響しないように設定 */
+}
