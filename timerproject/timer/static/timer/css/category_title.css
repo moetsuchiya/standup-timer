@@ -2,6 +2,10 @@ body {
     background: #FAFAFB;
 }
 
+.list-header {
+    color: #030229;
+}
+
 .list-task {
     list-style: none; /* デフォルトのリストマーカーを削除 */
     padding: 0;

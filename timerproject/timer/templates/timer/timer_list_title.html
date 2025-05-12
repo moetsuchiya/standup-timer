@@ -3,7 +3,7 @@
 
 {% block extra_css %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'timer/css/list_task.css' %}">
+<link rel="stylesheet" href="{% static 'timer/css/category_title.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,6 +15,7 @@
             <a href="{% url 'delete-title' title.pk %}" class="btn-delete">削除する</a>
         </li>
     {% endfor %}
+    <a href="{% url 'create-title' %}" class="btn btn-primary">タイトル作成へ</a>
     <a href="{% url 'list-category' %}" class="btn btn-primary">カテゴリ一覧へ</a>
 </ul>
 {% endblock content %}

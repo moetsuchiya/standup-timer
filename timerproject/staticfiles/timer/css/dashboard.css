@@ -1,3 +1,7 @@
+body {
+    background: #FAFAFB;
+}
+
 .month-pager {
     text-align: center;
     font-size: 1.6rem;

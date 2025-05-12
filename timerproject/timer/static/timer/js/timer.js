@@ -132,52 +132,77 @@ function restartTimer() {
 
 // 経過時間を記録する関数
 function recordTime() {
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    const titleId = document.querySelector('select[name="title"]').value;
+  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  const titleId = document.querySelector('select[name="title"]').value;
 
-    if (!titleId) {
-        alert("タイトルを選択してください");
-        return;
+  if (!titleId) {
+    showPopup("エラー", "タイトルを選択してください", "error");
+    return;
+  }
+
+  const requestData = {
+    elapsed_time: elapsedTime,
+    title_id: titleId,
+  };
+
+  const clockUrl = document.getElementById('clock-url').dataset.url;
+
+  fetch(clockUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken
+    },
+    body: JSON.stringify(requestData),
+    credentials: 'include'
+  })
+  .then(response => {
+    if (!response.ok) {
+      return response.text().then(text => {
+        throw new Error(text || `HTTP error! status: ${response.status}`);
+      });
     }
-
-    const requestData = {
-        elapsed_time: elapsedTime,
-        title_id: titleId,
-    };
-
-    const clockUrl = document.getElementById('clock-url').dataset.url;
-
-    // デバッグ用のログ
-    console.log('Request URL:', clockUrl);
-    console.log('CSRF Token:', csrfToken);
-    console.log('Request Data:', requestData);
-
-    fetch(clockUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken
-        },
-        body: JSON.stringify(requestData),
-        credentials: 'include'  // credentialsをincludeに変更
-    })
-    .then(response => {
-        console.log('Response status:', response.status);  // レスポンスステータスをログ出力
-        if (!response.ok) {
-            return response.text().then(text => {  // JSONでなくテキストとして読み込む
-                console.log('Error response:', text);  // エラーレスポンスの内容をログ出力
-                throw new Error(text || `HTTP error! status: ${response.status}`);
-            });
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Success response:', data);  // 成功レスポンスをログ出力
-        alert("時間が記録されました");
-        resetTimer();
-    })
-    .catch(error => {
-        console.error("記録エラー:", error);
-        alert(`記録に失敗しました。エラー: ${error.message}`);
-    });
+    return response.json();
+  })
+  .then(data => {
+    const imageUrl = document.getElementById('image-url').value;  // 画像URLを取得
+    showPopup("成功", "時間が記録されました", imageUrl);
+    resetTimer();
+  })
+  .catch(error => {
+    showPopup("記録エラー", `記録に失敗しました。エラー: ${error.message}`, "error");
+  });
 }
+
+function showPopup(title, message) {
+  try {
+    const overlay = document.createElement('div');
+    overlay.classList.add('popup-overlay');
+
+    const popup = document.createElement('div');
+    popup.classList.add('popup');
+
+    // ハードコードした画像パスを使用
+    const imageUrl = "http://localhost:8000/static/timer/images/完了マーク.png";
+
+    popup.innerHTML = `
+      <div class="popup-content">
+        <h2>${title}</h2>
+        <p>${message}</p>
+        <img src="${imageUrl}" alt="完了マーク">
+        <button class="popup-close">閉じる</button>
+      </div>
+    `;
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+
+    popup.querySelector('.popup-close').addEventListener('click', () => overlay.remove());
+
+    setTimeout(() => overlay.remove(), 3000);
+
+  } catch (error) {
+    console.error("Popupエラー:", error);
+  }
+}
+

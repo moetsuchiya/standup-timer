@@ -3,22 +3,21 @@
 
 {% block extra_css %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'timer/css/list_task.css' %}">
+<link rel="stylesheet" href="{% static 'timer/css/timer_list.css' %}">
 {% endblock %}
 
 {% block content %}
 <h1>記録一覧</h1>
-<div class="list-header">
-    <span class="header-category">📂 カテゴリ</span>
-    <span class="header-title">📌 タイトル</span>
-    <span class="header-description">✍️ メモ</span>
-    <span class="header-start-time">📅 開始時間</span>
-    <span class="header-duration">⏰ 時間</span>
-    <span class="header-thumbnail">🖼️ 画像</span>
-    <span class="header-action">🔍 詳細</span>
-</div>
-
 <ul class="list-task">
+    <li class="list-header">
+        <span class="header-category">カテゴリ</span>
+        <span class="header-title">タイトル</span>
+        <span class="header-description">メモ</span>
+        <span class="header-start-time">開始時間</span>
+        <span class="header-duration">時間</span>
+        <span class="header-action">詳細</span>
+    </li>
+
     {% for item in object_list %}
         <li class="list-item">
             <span class="category">{{ item.title.category.category }}</span>
@@ -26,8 +25,7 @@
             <span class="description">✍️ {{ item.description }}</span>
             <span class="start-time">📅 {{ item.start_time }}</span>
             <span class="duration">⏰ {{ item.duration }}</span>
-
-            <a href="{% url 'detail-timer' item.pk %}" class="custom-button">🔍 詳細へ</a>
+            <a href="{% url 'detail-timer' item.pk %}" class="custom-button">詳細へ</a>
         </li>
     {% endfor %}
 </ul>

@@ -23,15 +23,6 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    border: none;  /* 青い枠線を消す */
-}
-
-.nav-container:hover {
-    background-color: none;
-}
-
-.nav-container:active {
-    transform: translateY(2px);
 }
 
 .nav-links, .nav-auth {

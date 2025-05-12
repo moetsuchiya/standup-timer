@@ -16,7 +16,6 @@
                 <a href="{% url 'list-timer' %}">記録一覧</a>
                 <a href="{% url 'dashboard-timer' %}">記録グラフ</a>
                 <a href="{% url 'list-category' %}">カテゴリ・タイトル一覧</a>
-                <a href="{% url 'create-category' %}">カテゴリ・タイトル作成</a>
             </div>
             <div class="nav-auth">
                 {% if request.user.is_authenticated %}

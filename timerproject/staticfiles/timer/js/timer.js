@@ -19,7 +19,7 @@ function updateElapsedTimeDisplay() {
   const elapsedMinutes = Math.floor(elapsedTime / 60);
   const elapsedSeconds = elapsedTime % 60;
   document.getElementById("elapsed-time").textContent =
-    `経過時間: ${String(elapsedMinutes).padStart(2, "0")}:${String(elapsedSeconds).padStart(2, "0")} 経過`;
+    `${String(elapsedMinutes).padStart(2, "0")}:${String(elapsedSeconds).padStart(2, "0")} 経過`;
 }
 
 // ページ読み込み時に初期表示
@@ -71,7 +71,7 @@ function startTimer() {
           savedTime = remainingTime; // 現在の作業時間を保存
           isBreakTime = true;
           remainingTime = breakTime; // 休憩時間は5分に設定
-          document.getElementById("message").textContent = "休憩！立ちあがろう!"; // 休憩メッセージを表示
+          document.getElementById("message").textContent = "休憩！🚶立ちあがろう🚶"; // 休憩メッセージを表示
         }
       }
 
@@ -83,7 +83,7 @@ function startTimer() {
 
       if (!isBreakTime) {
         // 作業タイマー終了時の処理
-        document.getElementById("message").textContent = "お疲れ様でした！"; // 終了メッセージを表示
+        document.getElementById("message").textContent = "お疲れ様でした🎉"; // 終了メッセージを表示
         document.getElementById("message").style.display = "block";
         document.getElementById("record-button").style.display = "inline-block"; // 記録ボタンを表示
       } else {
@@ -132,52 +132,84 @@ function restartTimer() {
 
 // 経過時間を記録する関数
 function recordTime() {
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    const titleId = document.querySelector('select[name="title"]').value;
+  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  const titleId = document.querySelector('select[name="title"]').value;
 
-    if (!titleId) {
-        alert("タイトルを選択してください");
-        return;
-    }
+  if (!titleId) {
+      showPopup("エラー", "タイトルを選択してください", "error");
+      return;
+  }
 
-    const requestData = {
-        elapsed_time: elapsedTime,
-        title_id: titleId,
-    };
+  const requestData = {
+      elapsed_time: elapsedTime,
+      title_id: titleId,
+  };
 
-    const clockUrl = document.getElementById('clock-url').dataset.url;
+  const clockUrl = document.getElementById('clock-url').dataset.url;
 
-    // デバッグ用のログ
-    console.log('Request URL:', clockUrl);
-    console.log('CSRF Token:', csrfToken);
-    console.log('Request Data:', requestData);
+  // デバッグ用のログ
+  console.log('Request URL:', clockUrl);
+  console.log('CSRF Token:', csrfToken);
+  console.log('Request Data:', requestData);
 
-    fetch(clockUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken
-        },
-        body: JSON.stringify(requestData),
-        credentials: 'include'  // credentialsをincludeに変更
-    })
-    .then(response => {
-        console.log('Response status:', response.status);  // レスポンスステータスをログ出力
-        if (!response.ok) {
-            return response.text().then(text => {  // JSONでなくテキストとして読み込む
-                console.log('Error response:', text);  // エラーレスポンスの内容をログ出力
-                throw new Error(text || `HTTP error! status: ${response.status}`);
-            });
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Success response:', data);  // 成功レスポンスをログ出力
-        alert("時間が記録されました");
-        resetTimer();
-    })
-    .catch(error => {
-        console.error("記録エラー:", error);
-        alert(`記録に失敗しました。エラー: ${error.message}`);
-    });
+  fetch(clockUrl, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken
+      },
+      body: JSON.stringify(requestData),
+      credentials: 'include'
+  })
+  .then(response => {
+      console.log('Response status:', response.status);
+      if (!response.ok) {
+          return response.text().then(text => {
+              console.log('Error response:', text);
+              throw new Error(text || `HTTP error! status: ${response.status}`);
+          });
+      }
+      return response.json();
+  })
+  .then(data => {
+    console.log('Success response:', data);
+    showPopup("成功", "時間が記録されました", "{% static 'timer/images/完了マーク.png' %}");
+    resetTimer();
+})
+  .catch(error => {
+      console.error("記録エラー:", error);
+      showPopup("記録エラー", `記録に失敗しました。エラー: ${error.message}`, "error");
+  });
 }
+
+function showPopup(title, message, imageUrl) {
+  const overlay = document.createElement('div');
+  overlay.classList.add('popup-overlay');
+
+  const popup = document.createElement('div');
+  popup.classList.add('popup');
+
+  popup.innerHTML = `
+      <div class="popup-content">
+          <h2>${title}</h2>
+          <p>${message}</p>
+          ${imageUrl ? `<img src="${imageUrl}" alt="完了マーク" style="width: 50px; height: 50px; margin-top: 10px;">` : ''}
+          <button class="popup-close">閉じる</button>
+      </div>
+  `;
+
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+
+  // 閉じるボタンでポップアップを消す
+  popup.querySelector('.popup-close').addEventListener('click', () => {
+      overlay.remove();
+  });
+
+  // 3秒後に自動で消える
+  setTimeout(() => {
+      overlay.remove();
+  }, 3000);
+}
+
+
