@@ -117,7 +117,7 @@
 
 <!-- Treeコマンドを使ってディレクトリ構成を記載 -->
 
-tree -a -I "node_modules|.next|.git|.pytest_cache|static" -L 2
+<pre>
 .
 ├── accounts
 │   ├── __init__.py
@@ -156,6 +156,7 @@ tree -a -I "node_modules|.next|.git|.pytest_cache|static" -L 2
     ├── settings.py
     ├── urls.py
     └── wsgi.py
+</pre>
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
