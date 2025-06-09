@@ -65,8 +65,8 @@ function startTimer() {
       if (!isBreakTime) {
         elapsedTime++; // 作業タイマーが進むごとに経過時間を加算
 
-        // 経過時間が10秒ごとで、前回の休憩から10秒経過している場合のみ休憩に入る
-        if (elapsedTime % 10 === 0 && elapsedTime - lastBreakElapsedTime >= 10) {
+        // 経過時間が25分ごとで、前回の休憩から25分経過している場合のみ休憩に入る
+        if (elapsedTime % (25 * 60) === 0 && elapsedTime - lastBreakElapsedTime >= (25 * 60)) {
           lastBreakElapsedTime = elapsedTime; // 最後の休憩時間を更新
           savedTime = remainingTime; // 現在の作業時間を保存
           isBreakTime = true;
