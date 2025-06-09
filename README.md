@@ -44,6 +44,19 @@
 記録した作業は、**日別の作業量**や**カテゴリ別の時間配分**としてグラフで可視化できます。  
 学習や仕事の振り返り・習慣化に活用できるツールです。
 
+## スクリーンショット
+- タイマー画面
+<img width="1470" alt="Image" src="https://github.com/user-attachments/assets/360859b4-3f3c-4743-bb8c-a2505cdd14cf" />
+
+- 作業記録画面
+<img width="1470" alt="Image" src="https://github.com/user-attachments/assets/46770450-8782-47f3-9237-ea4a0d480d0f" />
+
+- 統計画面
+<img width="1470" alt="Image" src="https://github.com/user-attachments/assets/90d8047a-4fcf-4895-b85e-71f7a9ecc7a6" />
+
+- カテゴリ・タイトル管理画面
+<img width="1470" alt="Image" src="https://github.com/user-attachments/assets/9359bd7a-491f-494a-be8f-37f8e3b84f8e" />
+
 
 ## 主な機能
 
@@ -86,21 +99,6 @@
 - タイトルの追加・削除
 
 ユーザーごとに自由に学習項目をカスタマイズ可能
-
-
-## スクリーンショット
-- タイマー画面
-<img width="1470" alt="Image" src="https://github.com/user-attachments/assets/360859b4-3f3c-4743-bb8c-a2505cdd14cf" />
-
-- 作業記録画面
-<img width="1470" alt="Image" src="https://github.com/user-attachments/assets/46770450-8782-47f3-9237-ea4a0d480d0f" />
-
-- 統計画面
-<img width="1470" alt="Image" src="https://github.com/user-attachments/assets/90d8047a-4fcf-4895-b85e-71f7a9ecc7a6" />
-
-- カテゴリ・タイトル管理画面
-<img width="1470" alt="Image" src="https://github.com/user-attachments/assets/9359bd7a-491f-494a-be8f-37f8e3b84f8e" />
-
 
 ## 環境
 
