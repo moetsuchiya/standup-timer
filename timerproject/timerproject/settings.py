@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "timer.apps.TimerConfig",
-    "django.contrib.humanize"
+    "accounts.apps.AccountsConfig",
+    "django.contrib.humanize",
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,6 @@ STATIC_URL = "static/"
 # STATIC_ROOT: collectstatic コマンドを実行したときに、すべての静的ファイルがここにコピーされます。
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = "clock"
+LOGOUT_REDIRECT_URL = "clock"
