@@ -46,7 +46,8 @@
 
 ## スライド,スクリーンショット
 ### スライド
-https://www.figma.com/slides/ybJ89SDse7DQPWDr0Hxgzt/StandUP-Timer_土屋萌恵?node-id=1-1273&t=8QXkYLBGub9kltc3-0
+[StandUP!Timerのスライド](https://www.figma.com/slides/ybJ89SDse7DQPWDr0Hxgzt/StandUP-Timer_土屋萌恵?node-id=1-1273&t=8QXkYLBGub9kltc3-0 "StandUP-Timer_土屋萌恵")
+
 ### スクリーンショット
 - タイマー画面
 <img width="1470" alt="Image" src="https://github.com/user-attachments/assets/360859b4-3f3c-4743-bb8c-a2505cdd14cf" />
