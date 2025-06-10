@@ -45,8 +45,10 @@
 学習や仕事の振り返り・習慣化に活用できるツールです。
 
 ## スライド,スクリーンショット
+
 ### スライド
 [StandUP!Timerのスライド](https://www.figma.com/slides/ybJ89SDse7DQPWDr0Hxgzt/StandUP-Timer_土屋萌恵?node-id=1-1273&t=8QXkYLBGub9kltc3-0 "StandUP-Timer_土屋萌恵")
+<img width="1470" alt="Image" src="https://github.com/user-attachments/assets/6b23a68f-d0f3-4dcb-ac0a-d632410e23a2" />
 
 ### スクリーンショット
 - タイマー画面
