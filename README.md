@@ -44,10 +44,10 @@
 記録した作業は、**日別の作業量**や**カテゴリ別の時間配分**としてグラフで可視化できます。  
 学習や仕事の振り返り・習慣化に活用できるツールです。
 
-### スライド,スクリーンショット
-## スライド
+## スライド,スクリーンショット
+### スライド
 https://www.figma.com/slides/ybJ89SDse7DQPWDr0Hxgzt/StandUP-Timer_土屋萌恵?node-id=1-1273&t=8QXkYLBGub9kltc3-0
-## スクリーンショット
+### スクリーンショット
 - タイマー画面
 <img width="1470" alt="Image" src="https://github.com/user-attachments/assets/360859b4-3f3c-4743-bb8c-a2505cdd14cf" />
 
